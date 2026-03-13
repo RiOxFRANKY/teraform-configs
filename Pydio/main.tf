@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
@@ -30,7 +30,7 @@ resource "docker_container" "pydio" {
   name  = "pydio-cells"
   image = "pydio/cells-enterprise:${var.pydio_version}"
   networks_advanced {
-    name = docker_network.pydio_net.name
+    name = var.network_name
   }
   ports {
     internal = 8080

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
@@ -30,7 +30,7 @@ resource "docker_container" "seafile" {
   name  = "seafile-server"
   image = var.seafile_image
   networks_advanced {
-    name = docker_network.seafile_net.name
+    name = var.network_name
   }
   ports {
     internal = 8000

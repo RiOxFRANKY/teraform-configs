@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
@@ -32,7 +32,7 @@ resource "docker_container" "piwigo" {
   # In a real lab, this would use a custom image: piwigo:2.5.3
   image = var.piwigo_image
   networks_advanced {
-    name = docker_network.piwigo_net.name
+    name = var.network_name
   }
   ports {
     internal = 80

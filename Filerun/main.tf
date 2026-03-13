@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
@@ -30,7 +30,7 @@ resource "docker_container" "filerun" {
   name  = "filerun-server"
   image = var.filerun_image
   networks_advanced {
-    name = docker_network.filerun_net.name
+    name = var.network_name
   }
   ports {
     internal = 80

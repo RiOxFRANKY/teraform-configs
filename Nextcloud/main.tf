@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
@@ -28,12 +28,12 @@ resource "docker_container" "db" {
 
 resource "docker_container" "nextcloud" {
   name  = "nextcloud-server"
-  image = "partitio/nextcloud:${var.nextcloud_version}"
+  image = "nextcloud:${var.nextcloud_version}"
   networks_advanced {
-    name = docker_network.nextcloud_net.name
+    name = var.network_name
   }
   ports {
-    internal = 9000 # Standard FPM port
+    internal = 80
     external = var.nextcloud_port
   }
   env = [

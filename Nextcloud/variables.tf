@@ -1,6 +1,6 @@
 variable "nextcloud_version" {
   description = "The version of Nextcloud to deploy"
-  default     = "17.0.0-fpm-alpine"
+  default     = "17.0.0-apache"
 }
 
 variable "nextcloud_port" {

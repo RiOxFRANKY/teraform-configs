@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
@@ -32,7 +32,7 @@ resource "docker_container" "zenphoto" {
   # In a real lab, this would use a custom image: zenphoto:1.4.4
   image = var.zenphoto_image 
   networks_advanced {
-    name = docker_network.zenphoto_net.name
+    name = var.network_name
   }
   ports {
     internal = 80

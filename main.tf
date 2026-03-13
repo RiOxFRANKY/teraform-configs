@@ -2,12 +2,14 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
 
-provider "docker" {}
+provider "docker" {
+  host = "npipe:////./pipe/dockerDesktopLinuxEngine"
+}
 
 resource "docker_network" "lab_internal" {
   name = "lab_internal"

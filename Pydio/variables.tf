@@ -5,7 +5,7 @@ variable "pydio_version" {
 
 variable "pydio_port" {
   description = "The host port for Pydio Cells"
-  default     = 8081
+  default     = 8089
 }
 
 variable "db_password" {

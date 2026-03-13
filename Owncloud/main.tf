@@ -2,7 +2,7 @@ terraform {
   required_providers {
     docker = {
       source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
+      version = ">= 3.0.0"
     }
   }
 }
@@ -30,7 +30,7 @@ resource "docker_container" "owncloud" {
   name  = "owncloud-server"
   image = "vulhub/owncloud:${var.owncloud_version}" # Using vulhub image for vulnerability research
   networks_advanced {
-    name = docker_network.owncloud_net.name
+    name = var.network_name
   }
   ports {
     internal = 8080
