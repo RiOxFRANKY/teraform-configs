@@ -1,0 +1,16 @@
+hMailServer Vacation plugin for SquirrelMail
+========================================
+Ver 2.0, 2007-01-12
+
+Author: 		 Martin Knafve
+modified by: Dr. Mario Roediger <info_hmailserver@mrxs.de> 
+
+Description
+===========
+
+This plugin allows your users to set vacation/autoresponder
+messages when you use the hMailServer mailserver. It is based
+on the Courier vacation plugin written by Paul Lesneiwski.
+
+It's necessary that you specify your main hMailServer password 
+and some other settings in config.php.

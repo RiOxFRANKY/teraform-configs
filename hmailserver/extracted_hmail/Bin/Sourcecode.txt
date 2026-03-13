@@ -1,0 +1,13 @@
+The entire source code can be obtained in two different ways:
+
+1) Download from web page, http://www.hmailserver.com/?page=download
+2) Send a request to the hMailServer Development team, and we can 
+   provide you with the source code on a CD or DVD.
+   
+   Halvar Information
+   Nedre Långvinkelsgatan 21
+   252 20 Helsingborg
+   Sweden
+   
+   Telephone: 0046 (42) 30 10000
+   E-mail   : source@hmailserver.com

@@ -1,0 +1,13 @@
+Installing the hMailServer Password changer Plugin
+======================================
+
+1) Start with copying the plugin to the SM plugin directory.
+
+2) Then go to your SM config directory and run conf.pl.  Choose
+   option 8 and move the plugin from the "Available Plugins" 
+   category to the "Installed Plugins" category.  Save and exit.
+   If you don't have perl installed, edit config.php manually.
+   (search for plugin in it).
+   
+3) If you are using hMailServer 4.3 or later, set the hMailServer
+   Administrator password in config.php in this directory.

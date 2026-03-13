@@ -1,0 +1,89 @@
+<?php
+   
+   $domainid	= hmailGetVar("domainid",0);
+   $action	   = hmailGetVar("action","");
+   $domainname     = hmailGetVar("domainname","");
+   $domainactive   = hmailGetVar("domainactive","0");
+   $domainpostmaster   =   hmailGetVar("domainpostmaster","");
+   $domainmaxsize   = hmailGetVar("domainmaxsize","0");
+   $domainmaxmessagesize   = hmailGetVar("domainmaxmessagesize","0");
+   $domainplusaddressingenabled = hmailGetVar("domainplusaddressingenabled","0");
+   $domainplusaddressingcharacter = hmailGetVar("domainplusaddressingcharacter","+");
+   $domainantispamenablegreylisting = hmailGetVar("domainantispamenablegreylisting","0");
+   
+   $SignatureEnabled   = hmailGetVar("SignatureEnabled","0");
+   $SignatureHTML  	  = hmailGetVar("SignatureHTML","");
+   $SignaturePlainText = hmailGetVar("SignaturePlainText","");
+   $SignatureMethod    = hmailGetVar("SignatureMethod","1");
+   
+   $AddSignaturesToLocalMail = hmailGetVar("AddSignaturesToLocalMail","0");
+   $AddSignaturesToReplies   = hmailGetVar("AddSignaturesToReplies","0");
+   
+   $MaxAccountSize       = hmailGetVar("MaxAccountSize","0");
+   
+   $MaxNumberOfAccounts            = hmailGetVar("MaxNumberOfAccounts","0");
+   $MaxNumberOfAliases             = hmailGetVar("MaxNumberOfAliases","0");
+   $MaxNumberOfDistributionLists   = hmailGetVar("MaxNumberOfDistributionLists","0");
+   
+   $MaxNumberOfAccountsEnabled          = hmailGetVar("MaxNumberOfAccountsEnabled","0");
+   $MaxNumberOfAliasesEnabled           = hmailGetVar("MaxNumberOfAliasesEnabled","0");
+   $MaxNumberOfDistributionListsEnabled = hmailGetVar("MaxNumberOfDistributionListsEnabled","0");
+   
+   if ($domainactive == "")
+      $domainactive = 0;
+   
+   if (hmailGetAdminLevel() == 1 && ($domainid != hmailGetDomainID() || $action != "edit"))
+   	hmailHackingAttemp(); // Domain admin but not for this domain.   
+
+   if ($action == "edit")   
+      $obDomain	= $obBaseApp->Domains->ItemByDBID($domainid);
+   elseif ($action == "add")
+      $obDomain	= $obBaseApp->Domains->Add();
+   elseif ($action == "delete")
+   {
+      $obDomain	= $obBaseApp->Domains->ItemByDBID($domainid);
+      $obDomain->Delete();
+      
+      header("Location: index.php?page=domains");
+      exit();
+      
+   }
+      
+   $obDomain->Postmaster = $domainpostmaster;
+   
+   $obDomain->PlusAddressingEnabled = $domainplusaddressingenabled == "1";
+   $obDomain->PlusAddressingCharacter = $domainplusaddressingcharacter;
+   $obDomain->AntiSpamEnableGreylisting = $domainantispamenablegreylisting == "1";
+   
+   $obDomain->SignatureEnabled   = $SignatureEnabled == "1";
+   $obDomain->SignaturePlainText = $SignaturePlainText;
+   $obDomain->SignatureHTML      = $SignatureHTML;
+   $obDomain->SignatureMethod    = $SignatureMethod;
+      
+   $obDomain->AddSignaturesToLocalMail = $AddSignaturesToLocalMail;
+   $obDomain->AddSignaturesToReplies   = $AddSignaturesToReplies;
+   
+   if (hmailGetAdminLevel() == 2)
+   {
+      // Save other properties
+      $obDomain->Active = $domainactive;
+      $obDomain->Name = $domainname;
+      $obDomain->MaxSize = $domainmaxsize;
+      $obDomain->MaxMessageSize = $domainmaxmessagesize;
+      $obDomain->MaxAccountSize      = $MaxAccountSize;
+      
+      $obDomain->MaxNumberOfAccounts = $MaxNumberOfAccounts;
+      $obDomain->MaxNumberOfAliases  = $MaxNumberOfAliases;
+      $obDomain->MaxNumberOfDistributionLists = $MaxNumberOfDistributionLists;
+
+      $obDomain->MaxNumberOfAccountsEnabled = $MaxNumberOfAccountsEnabled;
+      $obDomain->MaxNumberOfAliasesEnabled  = $MaxNumberOfAliasesEnabled;
+      $obDomain->MaxNumberOfDistributionListsEnabled = $MaxNumberOfDistributionListsEnabled;
+   }
+
+   $obDomain->Save();
+   $domainid = $obDomain->ID;
+   
+   header("Location: index.php?page=domain&action=edit&domainid=$domainid");
+?>
+

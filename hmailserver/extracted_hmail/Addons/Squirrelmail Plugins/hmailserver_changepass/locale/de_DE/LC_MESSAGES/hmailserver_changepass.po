@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hmailserver_changepass\n"
+"POT-Creation-Date: 2003-3-1 22:19-0700\n"
+"PO-Revision-Date: 2007-01-02 03:58+0100\n"
+"Last-Translator: Dr. Mario Roediger <info+noanswer@mrxs.de>\n"
+"Language-Team: German <info@mrxs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+
+#: ../functions.php:10
+#: ../options.php:70
+msgid "Change Password"
+msgstr "Kennwort ändern"
+
+#: ../functions.php:12
+msgid "Use this to change your email password."
+msgstr "Hier können Sie das Kennwort für Ihr eMail-Konto ändern."
+
+#: ../functions.php:26
+msgid "User's Password"
+msgstr "Kennwort des Benutzers"
+
+#: ../options.php:96
+msgid "Old Password"
+msgstr "Altes Kennwort"
+
+#: ../options.php:100
+msgid "New Password"
+msgstr "Neues Kennwort"
+
+#: ../options.php:104
+msgid "Verify New Password"
+msgstr "Neues Kennwort nochmals"
+
+#: ../options.php:110
+msgid "Submit"
+msgstr "Speichern"
+
+#: ../options.php:113
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../options.php:146
+msgid "You must type in your old password."
+msgstr "Sie müssen Ihr altes Kennwort eingeben."
+
+#: ../options.php:148
+msgid "You must type in a new password."
+msgstr "Sie müssen Ihr neues Kennwort eingeben."
+
+#: ../options.php:151
+msgid "You must also type in your new password in the verify box."
+msgstr "Sie müssen Ihr neues Kennwort nochmals in das Bestätigungsfeld eingeben."
+
+#: ../options.php:154
+msgid "Your new password does not match the verify password."
+msgstr "Ihr neues Kennwort stimmt nicht überein."
+
+#: ../options.php:156
+msgid "Your old password is not correct."
+msgstr "Ihr altes Kennwort stimmt nicht."
+
+#: ../options.php:159
+msgid "Your new password must be different than your old password."
+msgstr "Ihr neues Kennwort darf nicht dasselbe wie Ihr altes sein."
+
+#: ../options.php:209
+msgid "Operation failed - Can not access the domain object."
+msgstr "Operation fehlgeschlagen! Kein Zugriff auf das Domain-Objekt."
+
+#: ../options.php:217
+msgid "Operation failed - Can not access the account object."
+msgstr "Operation fehlgeschlagen! Kein Zugriff auf das Benutzerkonto-Objekt."
+
+#: ../options.php:233
+msgid "Strange, your old password does not match the database... rejecting."
+msgstr "Merkwürdig! Ihr altes Kennwort stimmt nicht mit dem in der Datenbabk überein... Abgewiesen!"
+

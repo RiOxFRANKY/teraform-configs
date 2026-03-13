@@ -1,0 +1,103 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: hmailserver_vacation\n"
+"POT-Creation-Date: 2007-1-12 05:04+0100\n"
+"PO-Revision-Date: 2007-01-12 05:08+0100\n"
+"Last-Translator: Dr. Mario Roediger <info+noanswer@mrxs.de>\n"
+"Language-Team: German <info_hmailserver@mrxs.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+
+#: ../functions.php:15
+#: ../options.php:82
+msgid "Vacation / Autoresponder"
+msgstr "Abwesenheit / Automatische Antwort"
+
+#: ../functions.php:17
+msgid "Set up an auto-reply message for your incoming email.  This can be useful when you are away on vacation."
+msgstr "Erstellen Sie eine automatisch versandte Abwesenheitsnotiz.  Das kann hilfreich sein, wenn Sie längere Zeit abwesend sind."
+
+#: ../functions.php:31
+msgid "User's vacation / autoresponder"
+msgstr "Abwesenheit des Benutzers / Automatische Antwort"
+
+#: ../functions.php:50
+msgid "Error: Some fieldnames for the selectbox-set not specified!"
+msgstr "Fehler: Einige Feldnamen für die Auswahlboxen wurden nicht angegeben!"
+
+#: ../functions.php:55
+msgid "Error: Fieldname of the date-field not specified!"
+msgstr "Fehler: Feldname für das Datums-Feld wurde nicht angegeben!"
+
+#: ../functions.php:60
+msgid "Error: Fieldname of the timestamp-field not specified!"
+msgstr "Fehler: Feldname für das Timestamp-Feld wurde nicht angegeben!"
+
+#: ../functions.php:66
+msgid "Error: Cannot create both selectbox-set and datefield!"
+msgstr "Fehler: Es können nicht Auswahlboxen und Datumsfeld gleichzeitig angelegt werden!"
+
+#: ../functions.php:206
+#: ../functions.php:213
+msgid "DD"
+msgstr "TT"
+
+#: ../functions.php:206
+#: ../functions.php:213
+msgid "MM"
+msgstr "MM"
+
+#: ../functions.php:206
+#: ../functions.php:213
+msgid "YYYY"
+msgstr "JJJJ"
+
+#: ../functions.php:232
+msgid "Click here to show calendar"
+msgstr "Hier klicken, um Kalender zu öffnen"
+
+#: ../options.php:97
+msgid "Activate vacation autoresponder"
+msgstr "Aktivieren der automatischen Abwesenheitsnotiz"
+
+#: ../options.php:103
+msgid "Message subject"
+msgstr "Betreff der Nachricht"
+
+#: ../options.php:103
+msgid "(leave blank to use standard \"RE:\" syntax)"
+msgstr "(frei lassen, um einfaches \"RE:\" zu benutzen)"
+
+#: ../options.php:111
+msgid "Message text"
+msgstr "Text der Nachricht"
+
+#: ../options.php:123
+msgid "vacation autoresponder expires"
+msgstr "Abwesenheitsnotiz gilt begrenzt"
+
+#: ../options.php:158
+msgid "vacation autoresponder expiresdate"
+msgstr "Ablaufdatum der Abwesenheitsnotiz"
+
+#: ../options.php:164
+msgid "Submit"
+msgstr "Speichern"
+
+#: ../options.php:223
+msgid "Operation failed - Can not access the domain object."
+msgstr "Operation fehlgeschlagen - Kein Zugriff auf das Domain-Objekt."
+
+#: ../options.php:231
+msgid "Operation failed - Can not access the account object."
+msgstr "Operation fehlgeschlagen - Kein Zugriff auf das Benutzerkonto-Objekt."
+

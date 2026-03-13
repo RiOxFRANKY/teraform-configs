@@ -1,0 +1,24 @@
+FROM php:5.6-apache
+
+# Fix for old debian repositories
+RUN printf "deb http://archive.debian.org/debian/ stretch main\ndeb http://archive.debian.org/debian-security stretch/updates main" > /etc/apt/sources.list && \
+    echo "Acquire::Check-Valid-Until \"false\";" > /etc/apt/apt.conf.d/10no--check-valid-until
+
+# Install dependencies and PHP extensions
+RUN apt-get update && apt-get install -y --force-yes \
+    libpng-dev \
+    libjpeg-dev \
+    && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd mysql mysqli \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up Apache configurations
+RUN a2enmod rewrite
+
+# Copy Piwigo files
+COPY temp_piwigo/piwigo/ /var/www/html/
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
+
+EXPOSE 80

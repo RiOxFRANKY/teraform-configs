@@ -1,0 +1,16 @@
+hMailServer uses a set of 3:rd party libraries and components which 
+are copyrighted to people who created them:
+
+    * Server technology and overall design is written by Martin Knafve
+    * PHPWebAdmin is originally written by Steen Rabøl
+    * Mime encoding / decoding library written by Jeff Lee
+    * Blowfish algorithm written by Bruce Schneier
+    * SPF library by Roger Moser
+    * Boost, see boost.org
+    * InnoSetup by JR Software
+    * LibMySQL by MySQL AB.
+    * Some progressbars are Copyright (c) 2002 vbAccelerator.com.
+    
+To determine who holds the copyright of a specific part of the source
+code, please see file header for that file or contact the hMailServer
+Development Team at source@hmailserver.com.

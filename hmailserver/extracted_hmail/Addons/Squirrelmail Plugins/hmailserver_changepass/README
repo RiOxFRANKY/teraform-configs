@@ -1,0 +1,16 @@
+hMailServer password changer plugin for SquirrelMail
+====================================================0
+Ver 1.1, 2006-10-20
+
+Partly written by Martin Knafve.
+
+This plugin is based on the password changer for MySQL
+written by Paul Lesneiwski.
+
+It has been modified to fit for the mailserver hMailServer.
+(http://www.hmailserver.com). It uses the hMailServer COM 
+library for password modification, so the plugin has to 
+be run under Win32.
+  
+It's necessary that you specify your main hMailServer
+password in config.php.
