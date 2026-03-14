@@ -22,8 +22,8 @@ resource "docker_container" "coppermine" {
     external = var.coppermine_port
   }
   env = [
-    "DB_TYPE=postgresql",
-    "DB_HOST=postgres-server",
+    "DB_TYPE=mysql",
+    "DB_HOST=mariadb-server",
     "DB_USER=${var.db_user}",
     "DB_PASSWORD=${var.db_password}",
     "DB_NAME=coppermine"

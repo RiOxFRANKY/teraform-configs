@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --force-yes \
 
 # Copy authentic PHPWebAdmin files
 COPY extracted_hmail/PHPWebAdmin/ /var/www/html/
-RUN cp /var/www/html/config-dist.php /var/www/html/config.php
+COPY hmail_config.php /var/www/html/config.php
 
 # Create a sample file for LFI testing
 RUN echo "Vulnerable File Content" > /var/www/html/test_lfi.txt

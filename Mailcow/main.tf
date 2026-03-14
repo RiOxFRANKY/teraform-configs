@@ -21,6 +21,14 @@ resource "docker_container" "mailcow_ui" {
     internal = 80
     external = var.mailcow_port
   }
+  env = [
+    "DB_TYPE=pgsql",
+    "DB_HOST=postgres-server",
+    "DB_USER=${var.db_user}",
+    "DB_PASSWORD=${var.db_password}",
+    "DB_NAME=mailcow",
+    "REDIS_HOST=redis-mailcow"
+  ]
   restart = "always"
 }
 

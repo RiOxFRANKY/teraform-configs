@@ -26,6 +26,8 @@ EXPOSE 12001
 
 # Start script
 RUN echo '#!/bin/sh\n\
+export WINEPREFIX=/seafile/wine\n\
+wineboot --init\n\
 cd /seafile/server/seafile/bin\n\
 wine ccnet-server.exe -c /seafile/ccnet -d /seafile/seafile-data\n' > /seafile/start.sh && \
 chmod +x /seafile/start.sh

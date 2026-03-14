@@ -1,3 +1,3 @@
-db_user     = "lab_admin"
-db_password = "very_secure_research_password"
+db_user     = "admin"
+db_password = "admin2024"
 db_name     = "main_lab_db"

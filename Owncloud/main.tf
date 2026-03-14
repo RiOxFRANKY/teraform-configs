@@ -24,7 +24,7 @@ resource "docker_container" "owncloud" {
   env = [
     "OWNCLOUD_DB_TYPE=pgsql",
     "OWNCLOUD_DB_NAME=owncloud",
-    "OWNCLOUD_DB_USER=${var.db_user}",
+    "OWNCLOUD_DB_USERNAME=${var.db_user}",
     "OWNCLOUD_DB_PASSWORD=${var.db_password}",
     "OWNCLOUD_DB_HOST=postgres-server",
     "OWNCLOUD_ADMIN_USERNAME=admin",

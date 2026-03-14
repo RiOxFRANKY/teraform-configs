@@ -33,7 +33,7 @@ module "filerun" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [module.postgres]
+  depends_on   = [docker_container.mariadb]
 }
 
 module "nginx" {
@@ -46,7 +46,7 @@ module "coppermine" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [module.postgres]
+  depends_on   = [docker_container.mariadb]
 }
 
 module "zenphoto" {
@@ -62,7 +62,7 @@ module "piwigo" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [module.postgres]
+  depends_on   = [docker_container.mariadb]
 }
 
 module "hmailserver" {
@@ -70,7 +70,7 @@ module "hmailserver" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [module.postgres]
+  depends_on   = [docker_container.mariadb]
 }
 
 module "mailhog" {
@@ -130,6 +130,25 @@ resource "docker_container" "redis" {
   image = "redis:7-alpine"
   networks_advanced {
     name = docker_network.lab_internal.name
+  }
+  restart = "always"
+}
+
+resource "docker_container" "mariadb" {
+  name  = "mariadb-server"
+  image = "mariadb:10.5"
+  networks_advanced {
+    name = docker_network.lab_internal.name
+  }
+  env = [
+    "MYSQL_ROOT_PASSWORD=${var.db_password}",
+    "MYSQL_DATABASE=lab_db",
+    "MYSQL_USER=${var.db_user}",
+    "MYSQL_PASSWORD=${var.db_password}"
+  ]
+  ports {
+    internal = 3306
+    external = 3306
   }
   restart = "always"
 }

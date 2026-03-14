@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd mysql mysqli \
     && echo "date.timezone = UTC" > /usr/local/etc/php/conf.d/timezone.ini \
+    && echo "error_reporting = E_ALL & ~E_DEPRECATED & ~E_NOTICE" > /usr/local/etc/php/conf.d/error_reporting.ini \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up Apache configurations
@@ -18,6 +19,7 @@ RUN a2enmod rewrite
 
 # Copy Piwigo files
 COPY temp_piwigo/piwigo/ /var/www/html/
+COPY piwigo_config.php /var/www/html/local/config/database.inc.php
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html

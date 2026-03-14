@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     libonig-dev \
     libpq-dev \
     && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd mysql mysqli mbstring pdo_pgsql \
+    && docker-php-ext-install gd mysql mysqli mbstring pdo_pgsql pdo_mysql \
     && echo "date.timezone = UTC" > /usr/local/etc/php/conf.d/timezone.ini \
     && rm -rf /var/lib/apt/lists/*
 

@@ -27,7 +27,7 @@ resource "docker_container" "piwigo" {
     "POSTGRES_DB=piwigo",
     "POSTGRES_USER=${var.db_user}",
     "POSTGRES_PASSWORD=${var.db_password}",
-    "POSTGRES_HOST=postgres-server"
+    "POSTGRES_HOST=mariadb-server"
   ]
   restart = "always"
 }

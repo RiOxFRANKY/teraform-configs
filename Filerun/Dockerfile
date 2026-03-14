@@ -21,6 +21,9 @@ RUN a2enmod rewrite
 
 # Copy FileRun files
 COPY temp_filerun/ /var/www/html/
+COPY filerun_config.php /var/www/html/customizables/config.php
+COPY filerun_config.php /var/www/html/system/data/autoconfig.php
+COPY filerun_config.php /var/www/html/system/data/config.php
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
