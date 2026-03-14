@@ -8,8 +8,11 @@ RUN printf "deb http://archive.debian.org/debian/ stretch main\ndeb http://archi
 RUN apt-get update && apt-get install -y --force-yes \
     libpng-dev \
     libjpeg-dev \
+    libonig-dev \
+    libpq-dev \
     && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install gd mysql mysqli \
+    && docker-php-ext-install gd mysql mysqli mbstring pdo_pgsql \
+    && echo "date.timezone = UTC" > /usr/local/etc/php/conf.d/timezone.ini \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up Apache configurations

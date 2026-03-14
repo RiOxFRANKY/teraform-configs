@@ -11,21 +11,6 @@ variable "network_name" {
   description = "The name of the shared network"
 }
 
-resource "docker_container" "db" {
-  name  = "coppermine-db"
-  image = "mariadb:10.5"
-  networks_advanced {
-    name = var.network_name
-  }
-  env = [
-    "MYSQL_ROOT_PASSWORD=${var.db_password}",
-    "MYSQL_PASSWORD=${var.db_password}",
-    "MYSQL_DATABASE=${var.db_name}",
-    "MYSQL_USER=${var.db_user}"
-  ]
-  restart = "always"
-}
-
 resource "docker_container" "coppermine" {
   name  = "coppermine-gallery"
   image = var.coppermine_image
@@ -36,8 +21,14 @@ resource "docker_container" "coppermine" {
     internal = 80
     external = var.coppermine_port
   }
+  env = [
+    "DB_TYPE=postgresql",
+    "DB_HOST=postgres-server",
+    "DB_USER=${var.db_user}",
+    "DB_PASSWORD=${var.db_password}",
+    "DB_NAME=coppermine"
+  ]
   restart = "always"
-  depends_on = [docker_container.db]
 }
 
 # Documentation resource for Coppermine Photo Gallery SQL Injection

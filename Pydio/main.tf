@@ -11,21 +11,6 @@ variable "network_name" {
   description = "The name of the shared network"
 }
 
-resource "docker_container" "db" {
-  name  = "pydio-db"
-  image = "mariadb:10.5"
-  networks_advanced {
-    name = var.network_name
-  }
-  env = [
-    "MYSQL_ROOT_PASSWORD=${var.db_password}",
-    "MYSQL_PASSWORD=${var.db_password}",
-    "MYSQL_DATABASE=${var.db_name}",
-    "MYSQL_USER=${var.db_user}"
-  ]
-  restart = "always"
-}
-
 resource "docker_container" "pydio" {
   name  = "pydio-cells"
   image = "pydio/cells-enterprise:${var.pydio_version}"
@@ -40,10 +25,9 @@ resource "docker_container" "pydio" {
     "CELLS_BIND=0.0.0.0:8080",
     "CELLS_EXTERNAL=localhost:${var.pydio_port}",
     "CELLS_NO_TLS=1",
-    "CELLS_DATABASE_DSN=${var.db_user}:${var.db_password}@tcp(pydio-db:3306)/${var.db_name}"
+    "CELLS_DATABASE_DSN=postgres://${var.db_user}:${var.db_password}@postgres-server:5432/pydio?sslmode=disable"
   ]
   restart = "always"
-  depends_on = [docker_container.db]
 }
 
 # Documentation resource for Pydio Cells XSS via File Download

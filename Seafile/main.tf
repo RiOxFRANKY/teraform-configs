@@ -11,21 +11,6 @@ variable "network_name" {
   description = "The name of the shared network"
 }
 
-resource "docker_container" "db" {
-  name  = "seafile-db"
-  image = "mariadb:10.5"
-  networks_advanced {
-    name = var.network_name
-  }
-  env = [
-    "MYSQL_ROOT_PASSWORD=${var.db_password}",
-    "MYSQL_PASSWORD=${var.db_password}",
-    "MYSQL_DATABASE=${var.db_name}",
-    "MYSQL_USER=${var.db_user}"
-  ]
-  restart = "always"
-}
-
 resource "docker_container" "seafile" {
   name  = "seafile-server"
   image = var.seafile_image
@@ -44,13 +29,13 @@ resource "docker_container" "seafile" {
     "SEAFILE_SERVER_HOSTNAME=seafile.local",
     "SEAFILE_ADMIN_EMAIL=admin@seafile.local",
     "SEAFILE_ADMIN_PASSWORD=admin",
-    "DB_HOST=seafile-db",
+    "DB_TYPE=pgsql",
+    "DB_HOST=postgres-server",
     "DB_USER=${var.db_user}",
     "DB_PASSWORD=${var.db_password}",
-    "DB_NAME=${var.db_name}"
+    "DB_NAME=seafile"
   ]
   restart = "always"
-  depends_on = [docker_container.db]
 }
 
 # Documentation resource for the ccnet-server remote DoS (assert)

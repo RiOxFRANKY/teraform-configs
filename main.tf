@@ -31,6 +31,9 @@ resource "docker_container" "target_vms" {
 module "filerun" {
   source       = "./Filerun"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "nginx" {
@@ -41,21 +44,33 @@ module "nginx" {
 module "coppermine" {
   source       = "./Coppermine photo gallery"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "zenphoto" {
   source       = "./Zenphoto"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "piwigo" {
   source       = "./Piwigo"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "hmailserver" {
   source       = "./hmailserver"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "mailhog" {
@@ -66,24 +81,55 @@ module "mailhog" {
 module "mailcow" {
   source       = "./Mailcow"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "nextcloud" {
   source       = "./Nextcloud"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "owncloud" {
   source       = "./Owncloud"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "pydio" {
   source       = "./Pydio"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
 }
 
 module "seafile" {
   source       = "./Seafile"
   network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+  depends_on   = [module.postgres]
+}
+
+module "postgres" {
+  source       = "./Postgres"
+  network_name = docker_network.lab_internal.name
+  db_user      = var.db_user
+  db_password  = var.db_password
+}
+
+resource "docker_container" "redis" {
+  name  = "redis-mailcow"
+  image = "redis:7-alpine"
+  networks_advanced {
+    name = docker_network.lab_internal.name
+  }
+  restart = "always"
 }

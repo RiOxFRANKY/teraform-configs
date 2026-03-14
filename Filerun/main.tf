@@ -11,21 +11,6 @@ variable "network_name" {
   description = "The name of the shared network"
 }
 
-resource "docker_container" "db" {
-  name  = "filerun-db"
-  image = "mariadb:10.5"
-  networks_advanced {
-    name = var.network_name
-  }
-  env = [
-    "MYSQL_ROOT_PASSWORD=${var.db_password}",
-    "MYSQL_PASSWORD=${var.db_password}",
-    "MYSQL_DATABASE=${var.db_name}",
-    "MYSQL_USER=${var.db_user}"
-  ]
-  restart = "always"
-}
-
 resource "docker_container" "filerun" {
   name  = "filerun-server"
   image = var.filerun_image
@@ -37,14 +22,14 @@ resource "docker_container" "filerun" {
     external = var.filerun_port
   }
   env = [
-    "FR_DB_HOST=filerun-db",
-    "FR_DB_PORT=3306",
-    "FR_DB_NAME=${var.db_name}",
+    "FR_DB_TYPE=postgresql",
+    "FR_DB_HOST=postgres-server",
+    "FR_DB_PORT=5432",
+    "FR_DB_NAME=filerun",
     "FR_DB_USER=${var.db_user}",
     "FR_DB_PASS=${var.db_password}"
   ]
   restart = "always"
-  depends_on = [docker_container.db]
 }
 
 # Documentation resource for Filerun Authenticated RCE (XSS chain)

@@ -12,3 +12,12 @@ variable "webadmin_port" {
   description = "The host port for hMailServer PHPWebAdmin"
   default     = 8087
 }
+
+variable "db_user" {
+  description = "Database user for hMailServer"
+}
+
+variable "db_password" {
+  description = "Database password for hMailServer"
+  sensitive   = true
+}

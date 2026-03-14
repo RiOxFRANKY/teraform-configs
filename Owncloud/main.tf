@@ -11,21 +11,6 @@ variable "network_name" {
   description = "The name of the shared network"
 }
 
-resource "docker_container" "db" {
-  name  = "owncloud-db"
-  image = "mariadb:10.5"
-  networks_advanced {
-    name = var.network_name
-  }
-  env = [
-    "MYSQL_ROOT_PASSWORD=${var.db_password}",
-    "MYSQL_PASSWORD=${var.db_password}",
-    "MYSQL_DATABASE=${var.db_name}",
-    "MYSQL_USER=${var.db_user}"
-  ]
-  restart = "always"
-}
-
 resource "docker_container" "owncloud" {
   name  = "owncloud-server"
   image = "vulhub/owncloud:${var.owncloud_version}" # Using vulhub image for vulnerability research
@@ -37,16 +22,15 @@ resource "docker_container" "owncloud" {
     external = var.owncloud_port
   }
   env = [
-    "OWNCLOUD_DB_TYPE=mysql",
-    "OWNCLOUD_DB_NAME=${var.db_name}",
+    "OWNCLOUD_DB_TYPE=pgsql",
+    "OWNCLOUD_DB_NAME=owncloud",
     "OWNCLOUD_DB_USER=${var.db_user}",
     "OWNCLOUD_DB_PASSWORD=${var.db_password}",
-    "OWNCLOUD_DB_HOST=owncloud-db",
+    "OWNCLOUD_DB_HOST=postgres-server",
     "OWNCLOUD_ADMIN_USERNAME=admin",
     "OWNCLOUD_ADMIN_PASSWORD=admin"
   ]
   restart = "always"
-  depends_on = [docker_container.db]
 }
 
 # Documentation resource for major ownCloud vulnerabilities

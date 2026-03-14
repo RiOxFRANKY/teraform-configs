@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --force-yes \
     libjpeg-dev \
     && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd mysql mysqli \
+    && echo "date.timezone = UTC" > /usr/local/etc/php/conf.d/timezone.ini \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up Apache configurations
