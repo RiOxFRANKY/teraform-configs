@@ -23,7 +23,7 @@ resource "docker_container" "filerun" {
   }
   env = [
     "FR_DB_TYPE=mysql",
-    "FR_DB_HOST=mariadb-server",
+    "FR_DB_HOST=mysql-server",
     "FR_DB_PORT=3306",
     "FR_DB_NAME=filerun",
     "FR_DB_USER=${var.db_user}",

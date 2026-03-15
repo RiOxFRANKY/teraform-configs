@@ -23,7 +23,7 @@ resource "docker_container" "coppermine" {
   }
   env = [
     "DB_TYPE=mysql",
-    "DB_HOST=mariadb-server",
+    "DB_HOST=mysql-server",
     "DB_USER=${var.db_user}",
     "DB_PASSWORD=${var.db_password}",
     "DB_NAME=coppermine"

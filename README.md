@@ -1,4 +1,7 @@
 teraform configs
 
 
-Only Nextcloud is working fine
+Nextcloud is working fine
+Filerun is working fine
+Piwigo is working fine
+Coppermine is working fine

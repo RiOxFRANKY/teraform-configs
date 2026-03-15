@@ -33,7 +33,7 @@ module "filerun" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [docker_container.mariadb]
+  depends_on   = [docker_container.mysql]
 }
 
 module "nginx" {
@@ -46,7 +46,7 @@ module "coppermine" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [docker_container.mariadb]
+  depends_on   = [docker_container.mysql]
 }
 
 module "zenphoto" {
@@ -62,7 +62,7 @@ module "piwigo" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [docker_container.mariadb]
+  depends_on   = [docker_container.mysql]
 }
 
 module "hmailserver" {
@@ -70,7 +70,7 @@ module "hmailserver" {
   network_name = docker_network.lab_internal.name
   db_user      = var.db_user
   db_password  = var.db_password
-  depends_on   = [docker_container.mariadb]
+  depends_on   = [docker_container.mysql]
 }
 
 module "mailhog" {
@@ -134,9 +134,10 @@ resource "docker_container" "redis" {
   restart = "always"
 }
 
-resource "docker_container" "mariadb" {
-  name  = "mariadb-server"
-  image = "mariadb:10.5"
+resource "docker_container" "mysql" {
+  name  = "mysql-server"
+  image = "mysql:8.0"
+  command = ["--default-authentication-plugin=mysql_native_password", "--character-set-server=utf8", "--collation-server=utf8_general_ci", "--sql-mode="]
   networks_advanced {
     name = docker_network.lab_internal.name
   }
@@ -149,6 +150,10 @@ resource "docker_container" "mariadb" {
   ports {
     internal = 3306
     external = 3306
+  }
+  volumes {
+    host_path      = abspath("${path.module}/init.sql")
+    container_path = "/docker-entrypoint-initdb.d/init.sql"
   }
   restart = "always"
 }

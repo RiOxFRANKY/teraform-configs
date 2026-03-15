@@ -2,7 +2,7 @@
 // Coppermine configuration file
 
 // MySQL configuration
-$CONFIG['dbserver'] = 'mariadb-server';
+$CONFIG['dbserver'] = 'mysql-server';
 $CONFIG['dbuser'] = 'admin';
 $CONFIG['dbpass'] = 'admin2024';
 $CONFIG['dbname'] = 'coppermine';

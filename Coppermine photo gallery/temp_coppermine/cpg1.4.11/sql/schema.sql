@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS CPG_sessions (
   time int(11) default NULL,
   remember int(1) default '0',
   PRIMARY KEY (session_id)
-) TYPE=MyISAM COMMENT='Used to store sessions';
+) ENGINE=MyISAM COMMENT='Used to store sessions';
 # --------------------------------------------------------
 
 #
@@ -49,7 +49,7 @@ CREATE TABLE CPG_albums (
   alb_password_hint TEXT,
   PRIMARY KEY  (aid),
   KEY alb_category (category)
-) TYPE=MyISAM COMMENT='Used to store albums';
+) ENGINE=MyISAM COMMENT='Used to store albums';
 # --------------------------------------------------------
 
 #
@@ -68,7 +68,7 @@ CREATE TABLE CPG_categories (
   KEY cat_parent (parent),
   KEY cat_pos (pos),
   KEY cat_owner_id (owner_id)
-) TYPE=MyISAM COMMENT='Used to store categories';
+) ENGINE=MyISAM COMMENT='Used to store categories';
 # --------------------------------------------------------
 
 #
@@ -87,7 +87,7 @@ CREATE TABLE CPG_comments (
   author_id int(11) NOT NULL default '0',
   PRIMARY KEY  (msg_id),
   KEY com_pic_id (pid)
-) TYPE=MyISAM COMMENT='Used to store comments made on pics';
+) ENGINE=MyISAM COMMENT='Used to store comments made on pics';
 # --------------------------------------------------------
 
 #
@@ -98,7 +98,7 @@ CREATE TABLE CPG_config (
   name varchar(40) NOT NULL default '',
   value varchar(255) NOT NULL default '',
   PRIMARY KEY  (name)
-) TYPE=MyISAM COMMENT='Used to store the configuration options';
+) ENGINE=MyISAM COMMENT='Used to store the configuration options';
 # --------------------------------------------------------
 
 #
@@ -144,7 +144,7 @@ CREATE TABLE CPG_pictures (
   KEY pic_aid (aid),
   position INT(11) NOT NULL default '0',
   FULLTEXT KEY search (title,caption,keywords,filename)
-) TYPE=MyISAM COMMENT='Used to store data about individual pics';
+) ENGINE=MyISAM COMMENT='Used to store data about individual pics';
 # --------------------------------------------------------
 
 #
@@ -168,7 +168,7 @@ CREATE TABLE CPG_usergroups (
   num_file_upload tinyint(4) NOT NULL default '5',
   num_URI_upload tinyint(4) NOT NULL default '3',
   PRIMARY KEY  (group_id)
-) TYPE=MyISAM COMMENT='Used to store user groups';
+) ENGINE=MyISAM COMMENT='Used to store user groups';
 # --------------------------------------------------------
 
 #
@@ -195,7 +195,7 @@ CREATE TABLE CPG_users (
 
   PRIMARY KEY  (user_id),
   UNIQUE KEY user_name (user_name)
-) TYPE=MyISAM COMMENT='Used to store users, not used when bridged';
+) ENGINE=MyISAM COMMENT='Used to store users, not used when bridged';
 # --------------------------------------------------------
 
 #
@@ -207,7 +207,7 @@ CREATE TABLE CPG_votes (
   user_md5_id varchar(32) NOT NULL default '',
   vote_time int(11) NOT NULL default '0',
   PRIMARY KEY  (pic_id,user_md5_id)
-) TYPE=MyISAM COMMENT='Stores votes for individual pics';
+) ENGINE=MyISAM COMMENT='Stores votes for individual pics';
 #---------------------------------------------------------
 
 #
@@ -221,7 +221,7 @@ CREATE TABLE CPG_banned (
         expiry datetime DEFAULT NULL,
         brute_force tinyint(5) NOT NULL default '0',
         PRIMARY KEY  (ban_id)
-) TYPE=MyISAM COMMENT='Data about banned users';
+) ENGINE=MyISAM COMMENT='Data about banned users';
 #---------------------------------------------------------
 
 #
@@ -232,7 +232,7 @@ CREATE TABLE CPG_exif (
   `filename` varchar(255) NOT NULL default '',
   `exifData` text NOT NULL,
   UNIQUE KEY `filename` (`filename`)
-) TYPE=MyISAM COMMENT='Stores EXIF data from individual pics';
+) ENGINE=MyISAM COMMENT='Stores EXIF data from individual pics';
 # --------------------------------------------------------
 
 #
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
   content char(15) default NULL,
   player varchar(5) default NULL,
   PRIMARY KEY (extension)
-) TYPE=MyISAM COMMENT='Used to store the file extensions';
+) ENGINE=MyISAM COMMENT='Used to store the file extensions';
 # --------------------------------------------------------
 
 #
@@ -262,7 +262,7 @@ CREATE TABLE CPG_ecards (
   date tinytext NOT NULL,
   sender_ip tinytext NOT NULL,
   PRIMARY KEY  (eid)
-) TYPE=MyISAM COMMENT='Used to log ecards';
+) ENGINE=MyISAM COMMENT='Used to log ecards';
 # --------------------------------------------------------
 
 #
@@ -277,7 +277,7 @@ CREATE TABLE CPG_plugins (
   PRIMARY KEY  (plugin_id),
   UNIQUE KEY name (name),
   UNIQUE KEY path (path)
-) TYPE=MyISAM COMMENT='Stores the plugins';
+) ENGINE=MyISAM COMMENT='Stores the plugins';
 # --------------------------------------------------------
 
 #
@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `CPG_temp_data` (
 `encoded_string` BLOB NOT NULL ,
 `timestamp` INT( 11 ) UNSIGNED NOT NULL ,
 PRIMARY KEY ( `unique_ID` )
-) TYPE = MyISAM COMMENT = 'Holds temporary file data for multiple file uploads';
+) ENGINE=MyISAM COMMENT = 'Holds temporary file data for multiple file uploads';
 # --------------------------------------------------------
 
 #
@@ -300,7 +300,7 @@ CREATE TABLE `CPG_favpics` (
 `user_id` INT( 11 ) NOT NULL ,
 `user_favpics` TEXT NOT NULL ,
 PRIMARY KEY ( `user_id` )
-) TYPE = MyISAM COMMENT = 'Stores the server side favourites';
+) ENGINE=MyISAM COMMENT = 'Stores the server side favourites';
 # --------------------------------------------------------
 
 #
@@ -310,7 +310,7 @@ CREATE TABLE CPG_dict (
   keyId bigint(20) NOT NULL auto_increment,
   keyword varchar(60) NOT NULL default '',
   PRIMARY KEY  (keyId)
-) TYPE=MyISAM  COMMENT = 'Holds the keyword dictionary';
+) ENGINE=MyISAM  COMMENT = 'Holds the keyword dictionary';
 # --------------------------------------------------------
 
 #
@@ -321,7 +321,7 @@ CREATE TABLE CPG_bridge (
   name varchar(40) NOT NULL default '0',
   value varchar(255) NOT NULL default '',
   UNIQUE KEY name (name)
-) TYPE=MyISAM COMMENT='Stores the bridging data, not used when unbridged';
+) ENGINE=MyISAM COMMENT='Stores the bridging data, not used when unbridged';
 # --------------------------------------------------------
 
 #
@@ -337,7 +337,7 @@ CREATE TABLE `CPG_vote_stats` (
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`sid`)
-) TYPE=MyISAM COMMENT='Detailed stats about votes, only used when enabled';
+) ENGINE=MyISAM COMMENT='Detailed stats about votes, only used when enabled';
 # --------------------------------------------------------
 
 CREATE TABLE `CPG_hit_stats` (
@@ -350,5 +350,5 @@ CREATE TABLE `CPG_hit_stats` (
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`sid`)
-) TYPE = MyISAM COMMENT='Detailed stats about hits, only used when enabled';
+) ENGINE=MyISAM COMMENT='Detailed stats about hits, only used when enabled';
 # --------------------------------------------------------

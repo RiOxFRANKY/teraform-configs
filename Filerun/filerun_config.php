@@ -1,6 +1,6 @@
 <?php
-$config['db']['type'] = 'mysqli';
-$config['db']['host'] = 'mariadb-server';
+$config['db']['type'] = 'mysql';
+$config['db']['host'] = 'mysql-server';
 $config['db']['dbname'] = 'filerun';
 $config['db']['user'] = 'admin';
 $config['db']['password'] = 'admin2024';

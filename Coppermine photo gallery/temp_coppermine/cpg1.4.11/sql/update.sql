@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS CPG_sessions (
   time int(11) default NULL,
   remember int(1) default '0',
   PRIMARY KEY (session_id)
-) TYPE=MyISAM COMMENT='Used to store sessions';
+) ENGINE=MyISAM COMMENT='Used to store sessions';
 
 
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
   mime char(30) default NULL,
   content char(15) default NULL,
   KEY extension (extension)
-) TYPE=MyISAM COMMENT='Used to store the file extensions';
+) ENGINE=MyISAM COMMENT='Used to store the file extensions';
 
 ALTER TABLE `CPG_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
 ALTER TABLE `CPG_filetypes` ADD `player` VARCHAR( 5 ) ;
@@ -181,7 +181,7 @@ CREATE TABLE CPG_banned (
         ip_addr tinytext,
         expiry datetime DEFAULT NULL,
         PRIMARY KEY  (ban_id)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table `CPG_exif`
@@ -190,7 +190,7 @@ CREATE TABLE CPG_exif (
   `filename` varchar(255) NOT NULL default '',
   `exifData` text NOT NULL,
   UNIQUE KEY `filename` (`filename`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Table structure for table `CPG_ecards`
@@ -206,7 +206,7 @@ CREATE TABLE CPG_ecards (
   date tinytext NOT NULL,
   sender_ip tinytext NOT NULL,
   PRIMARY KEY  (eid)
-) TYPE=MyISAM COMMENT='Used to log ecards';
+) ENGINE=MyISAM COMMENT='Used to log ecards';
 
 #
 # Modify structure for table 'CPG_usergroups' - Upload form control - Hyperion
@@ -283,7 +283,7 @@ CREATE TABLE CPG_dict (
   keyId bigint(20) NOT NULL auto_increment,
   keyword varchar(60) NOT NULL default '',
   PRIMARY KEY  (keyId)
-) TYPE=MyISAM  COMMENT = 'Holds the keyword dictionary';
+) ENGINE=MyISAM  COMMENT = 'Holds the keyword dictionary';
 
 #
 # Add config profile rows
@@ -337,7 +337,7 @@ CREATE TABLE CPG_plugins (
   PRIMARY KEY  (plugin_id),
   UNIQUE KEY name (name),
   UNIQUE KEY path (path)
-) TYPE=MyISAM COMMENT='Stores the plugins';
+) ENGINE=MyISAM COMMENT='Stores the plugins';
 
 INSERT INTO CPG_config VALUES ('enable_help', '2');
 
@@ -365,7 +365,7 @@ CREATE TABLE CPG_bridge (
   name varchar(40) NOT NULL default '0',
   value varchar(255) NOT NULL default '',
   UNIQUE KEY name (name)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 # Data for table `CPG_bridge`
